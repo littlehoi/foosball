@@ -1,0 +1,5 @@
+<module>
+	<inherits name='com.google.gwt.user.User'/>
+	<entry-point class='com.gruppotesi.foosball.client.Foosball'/>
+	<servlet path='/login' class='com.gruppotesi.foosball.server.LoginServiceImpl'/> 
+</module>
