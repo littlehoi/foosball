@@ -2,23 +2,22 @@ package com.gruppotesi.foosball.server;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.gruppotesi.foosball.client.LoginService;
-import com.gruppotesi.foosball.client.Person;
+import com.gruppotesi.foosball.client.dto.UserDTO;
 
 
 /*
  * Implementation class for FoosballService service.
  */
-public class LoginServiceImpl extends RemoteServiceServlet implements LoginService 
+public class LoginServiceImpl extends RemoteServiceServlet implements LoginService
 {
 
-	public String quickFoosball()
-	{
-		return "Foosball How are you?";
-	}
-	
-	public String login(Person person)
+	public UserDTO login(UserDTO userDTO) throws Exception
 	{		
-		return "Foosball " + person.getTitle() + " " + person.getName();
+		if (userDTO.getUser() == null || userDTO.getUser().equals(""))
+		{
+			throw new Exception();
+		}
+		return new UserDTO(userDTO.getUser(), userDTO.getPassword());
 	}
 	
 	public static final long serialVersionUID =  1;

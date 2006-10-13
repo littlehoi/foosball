@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.gruppotesi.foosball.client.dto.UserDTO;
 
 /**
  * 
@@ -61,11 +62,11 @@ public class LoginRPC extends Composite
 	      	  };
 	      	  // invoke the service, the server will return response 
 	      	  // by calling callback function onSuccess() 
-	      	  loginService.login(new Person(textTitle.getText(), textName.getText()), callback);    	
+	      	  loginService.login(new UserDTO(textTitle.getText(), textName.getText()), callback);    	
 	        }
 	      });		
 		
-	    panel.setHorizontalAlignment(panel.ALIGN_CENTER);				
+			
 	    panel.add(labelRPC);
 	    panel.add(new Label("Title"));
 	    panel.add(textTitle);
@@ -73,6 +74,5 @@ public class LoginRPC extends Composite
 	    panel.add(textName);	    
 	    panel.add(buttonRPC);
 	    panel.add(info);
-	    setWidget(panel);
 	  }
 }

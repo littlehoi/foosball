@@ -1,5 +1,6 @@
 package com.gruppotesi.foosball.client;
 
+import com.gruppotesi.foosball.client.dto.UserDTO;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 /**
@@ -9,7 +10,6 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
  */  
 public interface LoginServiceAsync 
 {
-	public void quickFoosball(AsyncCallback callback);
 	// fucntion that uses serializable custom object
-	public void login(Person person, AsyncCallback callback);
+	void login(UserDTO userDTO, AsyncCallback callback);
 }
