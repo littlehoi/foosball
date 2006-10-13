@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="ImageViewer" default="all" basedir="C:\eclipsePL\runtime-workspace\GWTTest">
+	<description>
+		This is build file for GWT module 'com.gruppotesi.foosball.Foosball' deployment.
+		GWT Designer generates it each time when you initiate deployment.
+		
+		You can use this file later for manual deployment, but keep in mind, that
+		classpath is hardcoded in it, so after changes in classpath you should
+		regenerate build file.
+	</description>
+
+	<property name="gwt.home" value="E:\prog\GoogleWebToolkit\gwt" />
+	<property name="project.root" value="C:\Documents and Settings\U0148\workspace\foosball" />
+	<property name="gwt.module.id" value="com.gruppotesi.foosball.Foosball" />
+	<property name="jar.war.name" value="Foosball" />
+
+	<target name="jar" description="Package up the project as a jar">
+		<mkdir dir="@dot/${gwt.module.id}/WEB-INF/lib" />
+		<jar destfile="@dot/${gwt.module.id}/WEB-INF/lib/${jar.war.name}.jar">
+			<fileset dir="bin">
+				<include name="**/*.class" />
+			</fileset>
+			<!-- Get everything; source, modules, html files -->
+			<fileset dir="src">
+				<include name="**" />
+			</fileset>
+		</jar>
+	</target>
+
+	<target name="gwt-compile" description="Compile to JavaScript">
+		<java classname="com.google.gwt.dev.GWTCompiler" fork="yes" failonerror="true">
+			<classpath>
+				<pathelement location="C:/Documents and Settings/U0148/workspace/foosball/src" />
+				<pathelement location="C:/Documents and Settings/U0148/workspace/.metadata/.plugins/com.swtdesigner.gwt/gwt-user-patch.jar" />
+				<pathelement location="C:/Documents and Settings/U0148/workspace/foosball/bin" />
+				<pathelement location="E:/prog/GoogleWebToolkit/gwt/gwt-user.jar" />
+				<pathelement location="E:/Programmi/eclipse/plugins/org.junit4_4.1.0.1/junit-4.1.jar" />
+				<pathelement location="E:/prog/GoogleWebToolkit/gwt/gwt-dev-windows.jar" />
+			</classpath>
+			<arg value="-out" />
+			<arg file="@dot" />
+			<arg value="${gwt.module.id}" />
+		</java>
+	</target>
+
+	<target name="web-xml">
+		<mkdir dir="@dot/${gwt.module.id}/WEB-INF" />
+		<echo file="@dot/${gwt.module.id}/WEB-INF/web.xml"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+			<web-app>
+				<servlet>
+					<servlet-name>SchoolCalendarService</servlet-name>
+					<servlet-class>com.google.gwt.sample.dynatable.server.SchoolCalendarServiceImpl</servlet-class>
+				</servlet>
+
+				<servlet-mapping>
+					<servlet-name>SchoolCalendarService</servlet-name>
+					<url-pattern>/calendar</url-pattern>
+				</servlet-mapping>
+			</web-app>
+]]></echo>
+	</target>
+
+	<target name="war" depends="jar, gwt-compile, web-xml">
+		<mkdir dir="@dot/${gwt.module.id}/WEB-INF/lib" />
+		<copy file="${gwt.home}/gwt-servlet.jar" todir="@dot/${gwt.module.id}/WEB-INF/lib" />
+		<jar destfile="${jar.war.name}.war" basedir="@dot/${gwt.module.id}" duplicate="preserve" />
+		<delete dir="@dot" />
+	</target>
+
+	<target name="all" depends="war" />
+
+</project>

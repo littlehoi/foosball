@@ -12,5 +12,9 @@ public final class FoosballConstants
 	//public static final String LOGIN_SERVICE_URL = GWT.getModuleBaseURL() + "/login";
 	
 	// Foosball Service URL for GWT Hosted Environment
-	public static final String LOGIN_SERVICE_URL = "/login";
+	public static final String LOGIN_SERVICE_URL = "/com.gruppotesi.foosball.Foosball/login";
+	
+	
+	// messages
+	public static final String LOGIN_FAILED = "Login failed";
 }
